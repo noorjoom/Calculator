@@ -48,6 +48,13 @@ function populateDisplay() {
             display.value = currentInput;
         });
     });
+
+    //hear for operators being clicked
+    //once clicked.. previous currentInput becomes n1
+    //new varaibale to store operator as string
+    //hear for numbers being clicked 
+    //hear for operators being clicked ..> if not "=" then 
+    //continue to operate else run operate()
 }
 
 populateDisplay();
