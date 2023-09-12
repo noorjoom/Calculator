@@ -20,7 +20,7 @@ function divide(a, b) {
 
 let n1, n2, operator;
 
-function operation(n1, n2, operator) {
+function operate(n1, n2, operator) {
     if (operator === "+") {
         return add(n1, n2);
     } else if (operator === "-") {
@@ -33,3 +33,21 @@ function operation(n1, n2, operator) {
         return "Something is wrong here";
     }
 }
+let currentInput = "";
+
+function populateDisplay() {
+
+    const numberButtons = document.querySelectorAll('.number');
+    const display = document.getElementById('result');
+
+    numberButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            const clickedNumber = event.target.textContent;
+
+            currentInput += clickedNumber;
+            display.value = currentInput;
+        });
+    });
+}
+
+populateDisplay();
