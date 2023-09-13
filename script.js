@@ -18,7 +18,9 @@ function divide(a, b) {
     }
 }
 
-let n1, n2, operator;
+let n1 = 0;
+let n2 = null;
+let operator = null;
 
 function operate(n1, n2, operator) {
     if (operator === "+") {
@@ -34,11 +36,11 @@ function operate(n1, n2, operator) {
     }
 }
 let currentInput = "";
+const display = document.getElementById('result');
 
 function populateDisplay() {
 
     const numberButtons = document.querySelectorAll('.number');
-    const display = document.getElementById('result');
 
     numberButtons.forEach((button) => {
         button.addEventListener("click", (event) => {
@@ -54,8 +56,45 @@ function populateDisplay() {
     clearButton.addEventListener("click", (event) => {
         display.value = 0;
         currentInput = "";
+        n1 = 0;
+        n2 = null;
+        operator = null;
     });
 
+    //Not working!
+    const operatorButtons = document.querySelectorAll('.operator');
+    operatorButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            //check for chain operations (n2 !== null)
+            if (n2 !== null) {
+                n1 = operate(n1, parseFloat(currentInput), operator);
+                n2 = null;
+                operator = null;
+                currentInput = "";
+                display.value = n1;
+            }
+
+            operator = event.target.textContent;
+
+            if (n1 === 0) {
+                n1 = parseFloat(currentInput);
+                currentInput = "";
+            }
+        });
+    });
+
+    const equalButton = document.querySelector('.equal');
+    equalButton.addEventListener("click", (event) => {
+        if (operator && currentInput) {
+            n2 = parseFloat(currentInput);
+            const result = operate(n1, n2, operator);
+            display.value = result;
+            n1 = result;
+            n2 = null;
+            operator = null;
+            currentInput = "";
+        }
+    });
 }
 
 populateDisplay();
