@@ -49,12 +49,13 @@ function populateDisplay() {
         });
     });
 
-    //hear for operators being clicked
-    //once clicked.. previous currentInput becomes n1
-    //new varaibale to store operator as string
-    //hear for numbers being clicked 
-    //hear for operators being clicked ..> if not "=" then 
-    //continue to operate else run operate()
+
+    const clearButton = document.querySelector('.clear');
+    clearButton.addEventListener("click", (event) => {
+        display.value = 0;
+        currentInput = "";
+    });
+
 }
 
 populateDisplay();
