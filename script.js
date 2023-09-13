@@ -65,21 +65,25 @@ function populateDisplay() {
     const operatorButtons = document.querySelectorAll('.operator');
     operatorButtons.forEach((button) => {
         button.addEventListener("click", (event) => {
-            //check for chain operations (n2 !== null)
-            if (n2 !== null) {
-                n1 = operate(n1, parseFloat(currentInput), operator);
-                n2 = null;
-                operator = null;
-                currentInput = "";
-                display.value = n1;
+            if (n1 !== null && currentInput !== "") {
+                //check for chain operations (n2 !== null)
+                if (n2 !== null) {
+                    n1 = operate(n1, parseFloat(currentInput), operator);
+                    n2 = null;
+                    operator = null;
+                    currentInput = "";
+                    display.value = n1;
+                } else {
+                    n2 = parseFloat(currentInput);
+                    currentInput ="";
+                }
             }
 
             operator = event.target.textContent;
-
-            if (n1 === 0) {
-                n1 = parseFloat(currentInput);
-                currentInput = "";
-            }
+            // if (n1 === 0) {
+            //     n1 = parseFloat(currentInput);
+            //     currentInput = "";
+            // }
         });
     });
 
