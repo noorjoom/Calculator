@@ -9,7 +9,8 @@ function clearDisplay() {
 
 function updateDisplay() {
     if (currentNumber !== null) {
-        display.value = currentNumber;
+        const roundedNumber = currentNumber.toFixed(6);
+        display.value = roundedNumber;
     } else {
         display.value = currentInput;
     }
@@ -45,7 +46,7 @@ function operate(a, b, op) {
                 return a / b;
             } else {
                 console.error("Not allowed to divide by 0!");
-                return null;
+                return display.value = "cannot divide by 0";
             }
         default:
             return null;
@@ -81,5 +82,7 @@ equalButton.addEventListener("click", () => {
         operator = null;
         currentInput = "";
         updateDisplay();
+    } else {
+        console.error("Invalid");
     }
 });
